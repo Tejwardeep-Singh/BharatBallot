@@ -12,6 +12,7 @@ import { ElectionProvider, useElection } from './context/ElectionContext';
 import AdminResults from "./components/pages/AdminResults";
 import { api } from './services/api';
 import Copyright from "./components/Copywright";
+import Button from './components/common/Button';
 
 function Toast({ toast, clear }) { return toast && <div className={`fixed right-5 top-5 z-[100] rounded-xl px-4 py-3 text-sm font-semibold shadow-lg ${toast.type === 'error' ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'}`} onClick={clear}>{toast.message}</div>; }
 function Modal({ title, children, onClose }) {
@@ -50,7 +51,6 @@ function Modal({ title, children, onClose }) {
     </div>
   );
 }
-const Button = ({ children, className = '', ...props }) => <button className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${className || 'bg-blue-600 text-white hover:bg-blue-700'}`} {...props}>{children}</button>;
 const Field = ({ label, ...props }) => <label className="block text-xs font-bold text-slate-600">{label}<input {...props} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-600" /></label>;
 const Select = ({ label, children, ...props }) => <label className="block text-xs font-bold text-slate-600">{label}<select {...props} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-600">{children}</select></label>;
 const Status = ({ children }) => <span className={`rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wide ${children === 'Active' || children === 'active' || children === 'voted' ? 'bg-emerald-50 text-emerald-700' : children === 'Draft' || children === 'not_voted' ? 'bg-amber-50 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>{String(children || 'Active').replace('_', ' ')}</span>;
