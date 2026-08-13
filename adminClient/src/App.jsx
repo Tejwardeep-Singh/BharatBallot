@@ -13,6 +13,7 @@ import AdminResults from "./components/pages/AdminResults";
 import { api } from './services/api';
 import Copyright from "./components/Copywright";
 import Button from './components/common/Button';
+import Card from './components/common/Card';
 
 function Toast({ toast, clear }) { return toast && <div className={`fixed right-5 top-5 z-[100] rounded-xl px-4 py-3 text-sm font-semibold shadow-lg ${toast.type === 'error' ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'}`} onClick={clear}>{toast.message}</div>; }
 function Modal({ title, children, onClose }) {
@@ -71,7 +72,8 @@ function HeadOverview({ notify }) { const [data, setData] = useState({}); const 
   if (!selectedElection) return <Page title="System Overview" subtitle="A live view of Bharat Ballot administration."><Card className="text-center text-slate-500">Please select an election.</Card></Page>;
   const stats = data.statistics || {}; const cards = [['Selected Election', selectedElection.title, CalendarDays], ['Election Status', selectedElection.status, CheckCircle2], ['Total Constituencies', stats.constituencies || 0, FileText], ['Total Admins', stats.admins || 0, UserCog], ['Registered Voters', stats.voters || 0, Vote], ['Registered Candidates', stats.candidates || 0, Users]];
   return <Page title="System Overview" subtitle="A live view of Bharat Ballot administration."><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{cards.map(([label, value, Icon]) => <Card key={label}><Icon size={18} className="mb-4 text-blue-600" /><p className="text-xs font-bold uppercase tracking-wide text-slate-400">{label}</p><p className="mt-1 text-xl font-black text-slate-900">{loading ? '—' : value}</p></Card>)}</div><div className="mt-5 flex flex-wrap gap-3"><Button onClick={() => navigate('/head/election')}><Plus size={15} />Create Election</Button><Button className="border border-slate-200 bg-white text-slate-700 hover:bg-slate-50" onClick={() => navigate('/head/viewAdmins')}>Manage Admins</Button><Button className="border border-slate-200 bg-white text-slate-700 hover:bg-slate-50" onClick={() => navigate('/head/results')}>View Results</Button></div></Page>; }
-function Page({ title, subtitle, children, action }) { return <><div className="mb-7 flex flex-wrap items-end justify-between gap-4"><div><h1 className="text-2xl font-black text-slate-900">{title}</h1><p className="mt-1 text-sm text-slate-500">{subtitle}</p></div>{action}</div>{children}</>; } function Card({ children, className = '' }) { return <section className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ${className}`}>{children}</section>; }
+function Page({ title, subtitle, children, action }) { return <><div className="mb-7 flex flex-wrap items-end justify-between gap-4"><div><h1 className="text-2xl font-black text-slate-900">{title}</h1><p className="mt-1 text-sm text-slate-500">{subtitle}</p></div>{action}</div>{children}</>; }
+
 
 function Elections({ notify }) {
   const [items, setItems] = useState([]);
