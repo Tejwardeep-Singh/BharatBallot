@@ -25,6 +25,7 @@ import Page from './components/common/Page';
 import HeadOverview from './components/pages/HeadOverview';
 import Elections from './components/pages/Elections';
 import Admins from './components/pages/Admins';
+import AdminOverview from './components/pages/AdminOverview';
 
 
 
@@ -38,7 +39,7 @@ function useNotify() { const [toast, setToast] = useState(null); const notify = 
 
 
 
-function AdminOverview({notify}) { const [data,setData]=useState({}); const navigate=useNavigate(); useEffect(()=>{Promise.all([api('/api/admin/me',{role:'admin'}),api('/api/admin/voter/view',{role:'admin'}),api('/api/admin/candidate/view',{role:'admin'})]).then(([me,voters,candidates])=>setData({me,voters,candidates})).catch(e=>notify(e.message,'error'))},[notify]); const cards=[['Assigned Election',data.me?.election?.title||'Assigned election',CalendarDays],['Assigned Constituency',data.me?.constituency?.name || "—"|'—',FileText],['Registered Voters',data.voters?.length||0,UserPlus],['Registered Candidates',data.candidates?.length||0,Users],['Election Status',data.me?.election?.status||'—',CheckCircle2]];return <Page title="Admin Overview" subtitle="Your assigned election and constituency."><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{cards.map(([l,v,I])=><Card key={l}><I className="mb-4 text-blue-600" size={18}/><p className="text-xs font-bold uppercase text-slate-400">{l}</p><p className="mt-1 text-xl font-black">{v}</p></Card>)}</div><div className="mt-5 flex gap-3"><Button onClick={()=>navigate('/admin/voters')}>Register Voter</Button><Button className="border border-slate-200 bg-white text-slate-700" onClick={()=>navigate('/admin/candidate/view')}>Register Candidate</Button></div></Page> }
+
 
 
 function Directory({kind,notify}) { const role='admin', isVoter=kind==='voter'; const [items,setItems]=useState([]),[query,setQuery]=useState(''),[editor,setEditor]=useState(null),[confirm,setConfirm]=useState(null),[declaration,setDeclaration]=useState(null);; const load=useCallback(()=>api(`/api/admin/${isVoter?'voter':'candidate'}/view`,{role}).then(setItems).catch(e=>notify(e.message,'error')),[isVoter,notify]);useEffect(()=>{load()},[load]);
