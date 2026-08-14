@@ -27,6 +27,8 @@ import Elections from './components/pages/Elections';
 import Admins from './components/pages/Admins';
 import AdminOverview from './components/pages/AdminOverview';
 import Directory from './components/pages/Directory';
+import SettingsPage from './components/pages/SettingsPage';
+import Profile from './components/pages/Profile';
 
 
 
@@ -47,8 +49,8 @@ function useNotify() { const [toast, setToast] = useState(null); const notify = 
 
 
 
-function SettingsPage(){return <Page title="System Settings" subtitle="Maintain core election-system settings."><div className="max-w-3xl space-y-4"><Card><h2 className="font-bold">Results publication</h2><p className="mt-1 text-sm text-slate-500">Publish results only after the election has been completed and verified.</p></Card><Card><h2 className="font-bold">Security controls</h2><p className="mt-1 text-sm text-slate-500">Administrator permissions are assigned through election and constituency assignments.</p></Card></div></Page>}
-function Profile({notify}){const [me,setMe]=useState(null);useEffect(()=>{api('/api/admin/me',{role:'admin'}).then(setMe).catch(e=>notify(e.message,'error'))},[notify]);return <Page title="Profile" subtitle="Your assigned election and constituency."><Card className="max-w-2xl"><div className="grid gap-4 sm:grid-cols-2"><p><b>Name</b><br/>{me?.name||'—'}</p><p><b>Email / User ID</b><br/>{me?.userId||'—'}</p><p><b>Assigned election</b><br/>{me?.election?.title||'—'}</p><p><b>Assigned constituency</b><br/>{me?.constituency?.name||me?.address?.area||'—'}</p></div><p className="mt-6 border-t pt-5 text-sm text-slate-500">Password and profile-image updates are ready for the administrator profile API.</p></Card></Page>}
+
+
 const formatDate = v =>
   v ? new Date(v).toLocaleDateString() : '—';
 
