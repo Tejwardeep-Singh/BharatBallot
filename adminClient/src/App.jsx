@@ -19,9 +19,7 @@ import Select from './components/common/Select';
 import Status from './components/common/Status';
 import Modal from './components/common/Modal';
 import Confirm from './components/common/Confirm';
-
-function Toast({ toast, clear }) { return toast && <div className={`fixed right-5 top-5 z-[100] rounded-xl px-4 py-3 text-sm font-semibold shadow-lg ${toast.type === 'error' ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'}`} onClick={clear}>{toast.message}</div>; }
-
+import Toast from './components/common/Toast';
 
 
 function PortalShell({ role, children }) {
