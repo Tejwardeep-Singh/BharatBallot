@@ -118,10 +118,10 @@ router.get("/view", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-// router.delete("/delete/:id", async (req, res) => {
-//   await Admin.findByIdAndDelete(req.params.id);
-//   res.sendStatus(204);
-// });
+router.delete("/delete/:id", async (req, res) => {
+  await Admin.findByIdAndDelete(req.params.id);
+  res.sendStatus(204);
+});
 router.delete("/elections/:electionId/reset", async (req, res) => {
 
     const session = await mongoose.startSession();
