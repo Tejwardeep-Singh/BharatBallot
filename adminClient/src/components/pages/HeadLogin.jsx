@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { useElection } from '../../context/ElectionContext';
 
 export default function HeadLogin() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ export default function HeadLogin() {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
+  const { refreshElections } = useElection();
 
   const handleChange = (e) => {
     setFormData({
@@ -27,6 +29,7 @@ export default function HeadLogin() {
       const res = await axios.post(`${baseURL}/api/headLogin`, formData);
 
       localStorage.setItem('headToken', res.data.token);
+      await refreshElections();
       navigate('/head/dashboard');
     } catch (err) {
       console.error("❌ Error during login:", err);
