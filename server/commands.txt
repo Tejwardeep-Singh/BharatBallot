@@ -1,0 +1,4 @@
+python -m venv .venv
+.venv\Scripts\activate
+cd face
+uvicorn app:app --host 127.0.0.1 --port 8000
