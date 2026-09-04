@@ -1042,7 +1042,7 @@ For complete licensing information, please refer to the [LICENSE](LICENSE) file.
 # 👨‍💻 Developer
 
 **Tejwardeep Singh**
-Contact - tejwardeep@gmail.com
+Contact - tejwardeep@gmail.com 
 
 ---
 
