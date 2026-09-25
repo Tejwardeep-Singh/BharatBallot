@@ -1046,8 +1046,3 @@ For complete licensing information, please refer to the [LICENSE](LICENSE) file.
 
 ---
 
-<p align="center">
-
-Made with ❤️ for secure digital democracy.
-
-</p>
