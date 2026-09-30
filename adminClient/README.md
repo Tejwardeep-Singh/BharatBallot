@@ -431,8 +431,3 @@ MongoDB
 
 ---
 
-## 📄 License
-
-This project is developed for educational and project/research purposes.
-
-See the repository's `LICENSE` file for licensing information.

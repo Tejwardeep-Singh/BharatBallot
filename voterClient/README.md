@@ -493,9 +493,3 @@ Before deployment, verify:
 **Type:** Full-Stack Digital Election Management System
 
 ---
-
-## 📄 License
-
-This project is developed for educational and project/research purposes.
-
-See the repository's `LICENSE` file for licensing information.
